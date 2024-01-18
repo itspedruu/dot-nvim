@@ -51,3 +51,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 lspconfig.eslint.setup({
 	validate = "on"
 })
+
+-- volar
+lspconfig.volar.setup({
+	filetypes = {
+		"typescript",
+		"javascript",
+		"javascriptreact",
+		"typescriptreact",
+		"vue",
+		"json"
+	}
+})
