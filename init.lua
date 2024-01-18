@@ -25,7 +25,8 @@ require("lazy").setup({
 	"nvim-lualine/lualine.nvim",
 	"lewis6991/gitsigns.nvim",
 	"EdenEast/nightfox.nvim",
-	{ "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { "nvim-lua/plenary.nvim" } }
+	{ "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }
 })
 
 -- options
