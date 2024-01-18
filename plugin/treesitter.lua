@@ -4,7 +4,9 @@ require("nvim-treesitter.configs").setup({
 		"html",
 		"css",
 		"scss",
-		"vue"
+		"vue",
+		"lua",
+		"typescript"
 	},
 
 	auto_install = true,
