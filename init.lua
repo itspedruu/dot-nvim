@@ -26,7 +26,19 @@ require("lazy").setup({
 	"lewis6991/gitsigns.nvim",
 	"EdenEast/nightfox.nvim",
 	{ "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { "nvim-lua/plenary.nvim" } },
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"saadparwaiz1/cmp_luasnip",
+			"L3MON4D3/LuaSnip",
+		}
+	}
 })
 
 -- options
@@ -37,3 +49,6 @@ vim.opt.relativenumber=true
 vim.opt.signcolumn="yes" 
 vim.opt.nuw=1
 vim.opt.cc="80"
+
+-- maps
+vim.keymap.set('n', '<Esc>', '<cmd>noh<cr>', { silent = true })

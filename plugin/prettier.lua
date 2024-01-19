@@ -1,7 +1,7 @@
 local prettier = require("prettier")
 
 prettier.setup({
-  bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
+  bin = 'prettier',
   filetypes = {
     "css",
     "graphql",
@@ -17,3 +17,6 @@ prettier.setup({
     "yaml",
   },
 })
+
+-- mappings
+vim.keymap.set('n', 'F', '<cmd>Prettier<CR>') 
