@@ -1,3 +1,4 @@
+-- lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -11,8 +12,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- leader
 vim.g.mapleader = " "
 
+-- plugins
 require("lazy").setup({
 	"neovim/nvim-lspconfig",
 	{ "nvim-telescope/telescope.nvim", tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -38,7 +41,9 @@ require("lazy").setup({
 			"saadparwaiz1/cmp_luasnip",
 			"L3MON4D3/LuaSnip",
 		}
-	}
+	},
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim"
 })
 
 -- options
