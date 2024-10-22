@@ -1,14 +1,4 @@
--- Setup language servers.
 local lspconfig = require('lspconfig')
-lspconfig.pyright.setup {}
-lspconfig.tsserver.setup {}
-lspconfig.rust_analyzer.setup {
-  -- Server-specific settings. See `:help lspconfig-setup`
-  settings = {
-    ['rust-analyzer'] = {},
-  },
-}
-
 
 -- Global mappings.
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
@@ -47,6 +37,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+-- SERVERS
+
 -- eslint
 lspconfig.eslint.setup({
 	validate = "on"
@@ -55,11 +47,38 @@ lspconfig.eslint.setup({
 -- volar
 lspconfig.volar.setup({
 	filetypes = {
-		"typescript",
-		"javascript",
-		"javascriptreact",
-		"typescriptreact",
-		"vue",
-		"json"
+		"vue"
 	}
 })
+
+-- tsserver
+local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
+local volar_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
+
+lspconfig.ts_ls.setup({
+	init_options = {
+		plugins = {
+			{
+				name = "@vue/typescript-plugin",
+				location = volar_path,
+				languages = {"javascript", "typescript", "vue"},
+			},
+		},
+	},
+
+	filetypes = {
+		"typescript",
+		"javascript",
+		"vue"
+	}
+})
+
+-- pyright
+lspconfig.pyright.setup {}
+
+-- rust_analyze
+lspconfig.rust_analyzer.setup {
+  settings = {
+    ['rust-analyzer'] = {},
+  },
+}
