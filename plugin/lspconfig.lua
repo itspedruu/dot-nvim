@@ -39,29 +39,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- SERVERS
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 -- eslint
 lspconfig.eslint.setup({
-	validate = "on"
-})
-
--- volar
-lspconfig.volar.setup({
-	filetypes = {
-		"vue"
-	}
+	validate = "on",
+	capabilities = capabilities
 })
 
 -- tsserver
 local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
-local volar_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
+local vue_language_server_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
 
 lspconfig.ts_ls.setup({
 	init_options = {
 		plugins = {
 			{
 				name = "@vue/typescript-plugin",
-				location = volar_path,
-				languages = {"javascript", "typescript", "vue"},
+				location = vue_language_server_path,
+				languages = {
+					"javascript",
+					"typescript",
+					"vue"
+				},
 			},
 		},
 	},
@@ -70,7 +70,9 @@ lspconfig.ts_ls.setup({
 		"typescript",
 		"javascript",
 		"vue"
-	}
+	},
+	
+	capabilities = capabilities
 })
 
 -- pyright

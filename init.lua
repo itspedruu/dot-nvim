@@ -17,7 +17,7 @@ vim.g.mapleader = " "
 
 -- plugins
 require("lazy").setup({
-	"neovim/nvim-lspconfig",
+	{ "neovim/nvim-lspconfig", version = '*' },
 	{ "nvim-telescope/telescope.nvim", tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
 	{ "numToStr/Comment.nvim", lazy = false },
 	"nvim-tree/nvim-tree.lua",
@@ -57,3 +57,5 @@ vim.opt.cc="80"
 
 -- maps
 vim.keymap.set('n', '<Esc>', '<cmd>noh<cr>', { silent = true })
+vim.keymap.set('n', '<M-j>', '<cmd>cnext<cr>', { silent = true })
+vim.keymap.set('n', '<M-k>', '<cmd>cprev<cr>', { silent = true })
