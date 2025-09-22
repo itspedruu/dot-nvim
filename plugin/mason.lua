@@ -18,6 +18,7 @@ end
 require('mason-lspconfig').setup {
 	ensure_installed = {
 		'vue_ls',
+		'vtsls',
 		'ts_ls'
 	},
 

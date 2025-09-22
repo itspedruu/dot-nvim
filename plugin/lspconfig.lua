@@ -39,48 +39,39 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- SERVERS
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
--- eslint
-lspconfig.eslint.setup({
-	validate = "on",
-	capabilities = capabilities
-})
-
--- tsserver
+-- vtsls
 local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
 local vue_language_server_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
 
-lspconfig.ts_ls.setup({
-	init_options = {
-		plugins = {
-			{
-				name = "@vue/typescript-plugin",
-				location = vue_language_server_path,
-				languages = {
-					"javascript",
-					"typescript",
-					"vue"
-				},
+vim.lsp.config("vtsls", {
+	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+	settings = {
+		vtsls = { tsserver = { globalPlugins = {} } },
+		typescript = {
+			inlayHints = {
+				parameterNames = { enabled = "literals" },
+				parameterTypes = { enabled = true },
+				variableTypes = { enabled = true },
+				propertyDeclarationTypes = { enabled = true },
+				functionLikeReturnTypes = { enabled = true },
+				enumMemberValues = { enabled = true },
 			},
 		},
 	},
-
-	filetypes = {
-		"typescript",
-		"javascript",
-		"vue"
-	},
-	
-	capabilities = capabilities
+	before_init = function(_, config)
+		table.insert(config.settings.vtsls.tsserver.globalPlugins, {
+			name = "@vue/typescript-plugin",
+			location = vue_language_server_path,
+			languages = { "vue" },
+			configNamespace = "typescript",
+			enableForWorkspaceTypeScriptVersions = true,
+		})
+	end,
+	on_attach = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentRangeFormattingProvider = false
+	end,
 })
 
 -- pyright
-lspconfig.pyright.setup {}
-
--- rust_analyze
-lspconfig.rust_analyzer.setup {
-  settings = {
-    ['rust-analyzer'] = {},
-  },
-}
+vim.lsp.enable("pyright")
