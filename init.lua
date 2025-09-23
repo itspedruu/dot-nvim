@@ -21,7 +21,7 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope.nvim", tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
 	{ "numToStr/Comment.nvim", lazy = false },
 	"nvim-tree/nvim-tree.lua",
-	"jose-elias-alvarez/null-ls.nvim",
+	"nvimtools/none-ls.nvim",
 	"MunifTanjim/prettier.nvim",
 	"nvim-tree/nvim-web-devicons",
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },

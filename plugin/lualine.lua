@@ -1,6 +1,3 @@
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
 local lualine = require('lualine')
 
 -- Color table for highlights
@@ -139,8 +136,6 @@ ins_left {
   },
 }
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
 ins_left {
   function()
     return '%='
@@ -152,7 +147,7 @@ ins_left {
   function()
     local msg = 'No LSP'
     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-    local clients = vim.lsp.get_active_clients()
+    local clients = vim.lsp.get_clients()
     if next(clients) == nil then
       return msg
     end
@@ -176,8 +171,8 @@ ins_left {
 
 -- Add components to right sections
 ins_right {
-  'o:encoding', -- option component same as &encoding in viml
-  fmt = string.upper, -- I'm not sure why it's upper case either ;)
+  'o:encoding',
+  fmt = string.upper,
   cond = conditions.hide_in_width,
   color = { fg = colors.green, gui = 'bold' },
 }
@@ -185,7 +180,7 @@ ins_right {
 ins_right {
   'fileformat',
   fmt = string.upper,
-  icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+  icons_enabled = false,
   color = { fg = colors.green, gui = 'bold' },
 }
 
