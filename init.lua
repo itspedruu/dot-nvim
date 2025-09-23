@@ -49,7 +49,8 @@ require("lazy").setup({
 		build = function()
 			vim.cmd('call doge#install()')
 		end,
-	}
+	},
+	"kylechui/nvim-surround"
 })
 
 -- options
