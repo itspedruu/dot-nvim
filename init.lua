@@ -43,7 +43,13 @@ require("lazy").setup({
 		}
 	},
 	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim"
+	"williamboman/mason-lspconfig.nvim",
+	{
+		"kkoomen/vim-doge",
+		build = function()
+			vim.cmd('call doge#install()')
+		end,
+	}
 })
 
 -- options
