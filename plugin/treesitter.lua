@@ -6,7 +6,8 @@ require("nvim-treesitter.configs").setup({
 		"scss",
 		"vue",
 		"lua",
-		"typescript"
+		"typescript",
+		"go"
 	},
 
 	auto_install = true,

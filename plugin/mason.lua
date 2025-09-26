@@ -19,7 +19,8 @@ require('mason-lspconfig').setup {
 	ensure_installed = {
 		'vue_ls',
 		'vtsls',
-		'ts_ls'
+		'ts_ls',
+		'gopls'
 	},
 
 	automatic_installation = true

@@ -75,3 +75,12 @@ vim.lsp.config("vtsls", {
 
 -- pyright
 vim.lsp.enable("pyright")
+
+-- go
+vim.lsp.config("gopls", {
+	settings = {
+		gopls = {
+			completeUnimported = true,
+		},
+	},
+})
